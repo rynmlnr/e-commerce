@@ -1,3 +1,4 @@
+using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 {
     var services = builder.Services;
 
+    services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
     services.AddScoped<IProductRepository, ProductRepository>();
+
+    services.AddAutoMapper(typeof(MappingProfiles));
 
     services.AddControllers();
     services.AddDbContext<StoreContext>(x =>
@@ -18,7 +22,6 @@ var builder = WebApplication.CreateBuilder(args);
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen();
-
 }
 
 var app = builder.Build();
@@ -51,6 +54,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseStaticFiles();
 
 app.UseAuthorization();
 
