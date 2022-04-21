@@ -2,29 +2,28 @@ using API.Dtos;
 using AutoMapper;
 using Core.Entities;
 
-namespace API.Helpers
+namespace API.Helpers;
+
+public class ProductUrlResolver : IValueResolver<Product, ProductDto, string>
 {
-    public class ProductUrlResolver : IValueResolver<Product, ProductDto, string>
+    private readonly IConfiguration _config;
+
+    public ProductUrlResolver(IConfiguration config)
     {
-        private readonly IConfiguration _config;
+        _config = config;
+    }
 
-        public ProductUrlResolver(IConfiguration config)
+    public string Resolve(
+        Product source,
+        ProductDto destination,
+        string destMember,
+        ResolutionContext context)
+    {
+        if (!string.IsNullOrEmpty(source.PictureUrl))
         {
-            _config = config;
+            return _config["ApiUrl"] + source.PictureUrl;
         }
 
-        public string Resolve(
-            Product source,
-            ProductDto destination,
-            string destMember,
-            ResolutionContext context)
-        {
-            if (!string.IsNullOrEmpty(source.PictureUrl))
-            {
-                return _config["ApiUrl"] + source.PictureUrl;
-            }
-
-            return null;
-        }
+        return null;
     }
 }
