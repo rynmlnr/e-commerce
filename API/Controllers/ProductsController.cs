@@ -13,13 +13,13 @@ public class ProductsController : BaseApiController
 {
     private readonly IGenericRepository<Product> _productRepo;
     private readonly IGenericRepository<ProductBrand> _productBrandRepo;
-    private readonly IGenericRepository<ProductBrand> _productTypeRepo;
+    private readonly IGenericRepository<ProductType> _productTypeRepo;
     private readonly IMapper _mapper;
 
     public ProductsController(
         IGenericRepository<Product> productRepo,
         IGenericRepository<ProductBrand> productBrandRepo,
-        IGenericRepository<ProductBrand> productTypeRepo,
+        IGenericRepository<ProductType> productTypeRepo,
         IMapper mapper)
     {
         _productRepo = productRepo;
