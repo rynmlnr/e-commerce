@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Core.Interfaces;
 using Core.Entities;
-using Core.Interfaces;
 
 
 namespace API.Controllers;
