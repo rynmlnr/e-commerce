@@ -59,7 +59,7 @@ public class AccountController : BaseApiController
     {
         var user = await _userManager.FindByUserFromClaimsPrincipleWithAddressAsync(HttpContext.User);
 
-        return _mapper.Map<Address, AddressDto>(user.Address);
+        return _mapper.Map<Address, AddressDto>(user!.Address);
     }
 
     [HttpPut("address")]
@@ -99,6 +99,12 @@ public class AccountController : BaseApiController
     [HttpPost("register")]
     public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
     {
+        if (CheckEmailExistsAsync(registerDto.Email!).Result.Value) {
+            return new BadRequestObjectResult(new ApiValidationErrorResponse
+                { Errors = new [] { "Email address is in user"} }
+            );
+        }
+
         var user = new AppUser
         {
             DisplayName = registerDto.DisplayName,

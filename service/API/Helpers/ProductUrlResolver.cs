@@ -24,6 +24,6 @@ public class ProductUrlResolver : IValueResolver<Product, ProductDto, string>
             return _config["ApiUrl"] + source.PictureUrl;
         }
 
-        return null;
+        return "";
     }
 }
