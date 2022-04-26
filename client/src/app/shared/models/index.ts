@@ -3,3 +3,4 @@ export * from './pagination';
 export * from './productType';
 export * from './brand';
 export * from './shopParams';
+export * from './basket';
