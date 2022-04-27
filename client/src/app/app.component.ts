@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from './account/account.service';
 import { BasketService } from './basket/basket.service';
 
 @Component({
@@ -8,10 +9,13 @@ import { BasketService } from './basket/basket.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private basketService: BasketService) { }
+  constructor(
+    private basketService: BasketService,
+    private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.initializeBasket();
+    this.loadUser();
   }
 
   initializeBasket(): void {
@@ -23,6 +27,15 @@ export class AppComponent implements OnInit {
         console.log(error);
       });
     }
+  }
+
+  loadUser(): void {
+    const token = localStorage.getItem('token');
+    this.accountService.loadCurrentUser(token!)?.subscribe(() => {
+      console.log('Load User')
+    }, error => {
+      console.log(error);
+    });
   }
 
 
