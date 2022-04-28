@@ -24,5 +24,5 @@ export interface OrderItem {
   productName: string
   pictureUrl: string
   price: number;
-  quatity: number;
+  quantity: number;
 }

@@ -59,7 +59,7 @@ export class BasketService {
     this.setBasket(basket);
   }
 
-  incrementItemQuatity(item: BasketItem) {
+  incrementItemQuantity(item: BasketItem) {
     const basket = this.getCurrentBasketValue();
     // Get item in basket
     const foundItemIndex = Number(basket?.items.findIndex(x => x.id === item.id));
@@ -70,7 +70,7 @@ export class BasketService {
     }
   }
 
-  decrementItemQuatity(item: BasketItem) {
+  decrementItemQuantity(item: BasketItem) {
     const basket = this.getCurrentBasketValue();
     // Get item in basket
     const foundItemIndex = Number(basket?.items.findIndex(x => x.id === item.id));
