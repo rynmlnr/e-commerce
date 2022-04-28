@@ -38,7 +38,7 @@ public class OrderService : IOrderService
         var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
 
         // calculate sub total
-        var subtotal = orderItems.Sum(item => item.Price * item.Quatity);
+        var subtotal = orderItems.Sum(item => item.Price * item.Quantity);
 
         // create order
         var order = new Order(orderItems, buyerEmil, shippingAddress, deliveryMethod, subtotal);
