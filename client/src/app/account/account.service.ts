@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from '../shared/models';
+import { Address, User } from '../shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +25,7 @@ export class AccountService {
       return null;
     }
     
-    let headers = new HttpHeaders();
-    headers = headers.set('Authorization', `Bearer ${token}`);
-
-    return this.http.get(`${this.baseUrl}account`, {headers}).pipe(
+    return this.http.get(`${this.baseUrl}account`).pipe(
       map((user: User|any) => {
         if (user) {
           localStorage.setItem('token', user.token);
@@ -68,5 +65,13 @@ export class AccountService {
 
   checkEmailExists(email: string) {
     return this.http.get(`${this.baseUrl}account/emailexists?email=${email}`);
+  }
+
+  getUserAddress() {
+    return this.http.get<Address>(`${this.baseUrl}account/address`);
+  }
+  
+  updateUserAddress(address: Address) {
+    return this.http.put<Address>(`${this.baseUrl}account/address`, address);
   }
 }

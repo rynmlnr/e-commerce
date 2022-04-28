@@ -22,7 +22,6 @@ export class BasketComponent implements OnInit {
   }
 
   incrementItemQuantity(item: BasketItem) {
-    console.log(item);
     this.basketService.incrementItemQuatity(item);
   }
   

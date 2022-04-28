@@ -6,3 +6,5 @@ export * from './shopParams';
 export * from './basket';
 export * from './address';
 export * from './user';
+export * from './deliveryMethod';
+export * from './order';
