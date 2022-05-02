@@ -3,6 +3,7 @@ button.nav-link {
   border-radius: 0;
   border: none;
   color: #333333;
+  padding: 16px 24px;
 }
 
 button.nav-link:focus {

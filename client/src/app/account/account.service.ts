@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Address, User } from '../shared/models';
@@ -71,7 +71,7 @@ export class AccountService {
     return this.http.get<Address>(`${this.baseUrl}account/address`);
   }
   
-  updateUserAddress(address: Address) {
+  updateUserAddress(address: Address): Observable<Address> {
     return this.http.put<Address>(`${this.baseUrl}account/address`, address);
   }
 }

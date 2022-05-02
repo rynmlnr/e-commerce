@@ -11,13 +11,15 @@ public class Order : BaseEntity
         string buyerEmail,
         Address shipToAddress,
         DeliveryMethod deliveryMethod,
-        decimal subTotal)
+        decimal subTotal,
+        string paymentIntendId)
     {
         BuyerEmail = buyerEmail;
         ShipToAddress = shipToAddress;
         DeliveryMethod = deliveryMethod;
         OrderItems = orderItems;
         SubTotal = subTotal;
+        PaymentIntendId = paymentIntendId;
     }
 
     public string BuyerEmail { get; set; }
